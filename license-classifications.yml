@@ -1,0 +1,72 @@
+# License Classifications
+#
+# Groups SPDX license identifiers into named categories.
+# The evaluator.rules.kts policy file references these category names.
+#
+# Full list of SPDX identifiers: https://spdx.org/licenses/
+# ORT reference: https://oss-review-toolkit.org/docs/configuration/license-classifications
+
+categories:
+  # ── Permissive ───────────────────────────────────────────────────────────────
+  # Minimal restrictions; generally safe for any distribution model.
+  - name: "permissive"
+    licenses:
+      - "MIT"
+      - "Apache-2.0"
+      - "BSD-2-Clause"
+      - "BSD-3-Clause"
+      - "ISC"
+      - "0BSD"
+      - "Unlicense"
+      - "CC0-1.0"
+      - "WTFPL"
+      - "Zlib"
+      - "PSF-2.0"
+      - "Python-2.0"
+
+  # ── Weak copyleft ────────────────────────────────────────────────────────────
+  # Requires disclosure of modifications to the library itself, but not the
+  # containing application. Usually safe for linking.
+  - name: "copyleft"
+    licenses:
+      - "LGPL-2.0-only"
+      - "LGPL-2.0-or-later"
+      - "LGPL-2.1-only"
+      - "LGPL-2.1-or-later"
+      - "LGPL-3.0-only"
+      - "LGPL-3.0-or-later"
+      - "MPL-2.0"
+      - "EPL-1.0"
+      - "EPL-2.0"
+      - "CDDL-1.0"
+      - "EUPL-1.2"
+
+  # ── Strong copyleft ──────────────────────────────────────────────────────────
+  # Requires disclosure of the entire combined work's source if distributed.
+  # Use the evaluator rule to block or warn on these.
+  - name: "strong-copyleft"
+    licenses:
+      - "GPL-2.0-only"
+      - "GPL-2.0-or-later"
+      - "GPL-3.0-only"
+      - "GPL-3.0-or-later"
+      - "AGPL-1.0-only"
+      - "AGPL-1.0-or-later"
+      - "AGPL-3.0-only"
+      - "AGPL-3.0-or-later"
+      - "SSPL-1.0"
+
+  # ── Proprietary / Commercial ─────────────────────────────────────────────────
+  # Not open source; requires a commercial licence or explicit permission.
+  - name: "commercial"
+    licenses:
+      - "LicenseRef-scancode-commercial-license"
+      - "LicenseRef-scancode-proprietary-license"
+
+  # ── Free but restricted ──────────────────────────────────────────────────────
+  # Open source but with additional use restrictions (non-commercial clauses, etc.).
+  - name: "free-restricted"
+    licenses:
+      - "CC-BY-NC-4.0"
+      - "CC-BY-NC-SA-4.0"
+      - "BUSL-1.1"

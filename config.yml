@@ -1,0 +1,53 @@
+# ORT Global Configuration
+#
+# This file is placed at $ORT_CONFIG_DIR/config.yml inside the ORT container.
+# The workflow points ORT at OSSAPAC/ort-config via ort-config-repository, so
+# ORT clones this repo and uses this file automatically.
+#
+# Full reference: https://oss-review-toolkit.org/docs/configuration/ort-yml
+
+ort:
+  # ── Advisor ─────────────────────────────────────────────────────────────────
+  # OSV (Open Source Vulnerabilities) is free and requires no API key.
+  # Add "VulnerableCode" here if you set up your own instance.
+  advisor:
+    config:
+      OSV:
+        serverUrl: "https://api.osv.dev"
+
+  # ── Analyzer ────────────────────────────────────────────────────────────────
+  analyzer:
+    # Set to true if you need to allow npm/yarn packages with floating version
+    # ranges (e.g. "^1.0.0"). Disabled by default to encourage pinned deps.
+    allowDynamicVersions: false
+
+  # ── Scanner ─────────────────────────────────────────────────────────────────
+  # ScanCode is bundled in the ORT Docker image; no extra config needed.
+  # Uncomment the storage block below to cache scan results in a PostgreSQL DB
+  # (useful for large orgs to avoid re-scanning unchanged packages).
+  #
+  # scanner:
+  #   storages:
+  #     postgres:
+  #       connection:
+  #         url: "jdbc:postgresql://<host>:5432/ort"
+  #         schema: "ort"
+  #         username: "<user>"
+  #         password: "<password>"
+  #   storageReaders: [postgres]
+  #   storageWriters: [postgres]
+
+  # ── License choices ──────────────────────────────────────────────────────────
+  # When a package is dual/multi-licensed, ORT will pick the first matching
+  # license from this list. Adjust the order to reflect your org's preference.
+  licenseChoices:
+    repositoryLicenseChoices: []
+
+  # ── GitHub authentication ────────────────────────────────────────────────────
+  # The GITHUB_TOKEN env var (set in the workflow) covers most cases.
+  # Add explicit entries here only if you need per-host PATs.
+  #
+  # For example, to access a GitHub Enterprise instance:
+  # servers:
+  #   - url: "https://github.example.com"
+  #     token: "<token>"

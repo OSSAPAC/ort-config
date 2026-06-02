@@ -1,0 +1,45 @@
+# Package Metadata Curations
+#
+# Use this file to correct inaccurate or missing metadata that ORT picks up
+# from a package's published manifest (e.g. a package that declares the wrong
+# SPDX license identifier, or one with no license declared at all).
+#
+# HOW IT WORKS
+# ────────────
+# ORT matches curations by package identifier (type:namespace:name:version).
+# The version field accepts exact versions OR Maven-style ranges:
+#   [1.0,2.0)  – 1.0 <= version < 2.0
+#   [1.5,]     – version >= 1.5
+#   (,1.0]     – version <= 1.0
+#
+# Full schema: https://oss-review-toolkit.org/docs/configuration/package-curations
+#
+# ── EXAMPLE 1: Fix an incorrect declared license ──────────────────────────────
+- id: "NPM::lodash:4.17.21"
+  curations:
+    comment: >
+      The package's package.json declares 'MIT' but the correct SPDX identifier
+      is 'MIT'. This curation is a no-op placeholder — replace with a real fix.
+    declared_license_mapping:
+      "MIT": "MIT"
+
+# ── EXAMPLE 2: Supply a missing declared license ──────────────────────────────
+# Uncomment and adapt when a package ships with no license field at all.
+#
+# - id: "Maven:com.example:some-lib:[1.0,2.0)"
+#   curations:
+#     comment: "No license in POM; confirmed MIT by vendor email 2025-01-15."
+#     declared_licenses:
+#       - "MIT"
+
+# ── EXAMPLE 3: Override the source code URL ───────────────────────────────────
+#
+# - id: "PyPI::requests:2.31.0"
+#   curations:
+#     comment: "Fix incorrect homepage URL in PyPI metadata."
+#     homepage_url: "https://requests.readthedocs.io"
+#     source_artifact:
+#       url: "https://files.pythonhosted.org/packages/.../requests-2.31.0.tar.gz"
+#       hash:
+#         algorithm: "SHA-1"
+#         value: "abc123..."
