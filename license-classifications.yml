@@ -1,72 +1,80 @@
 # License Classifications
 #
-# Groups SPDX license identifiers into named categories.
-# The evaluator.rules.kts policy file references these category names.
+# ORT uses two separate sections:
+#   categories:       defines the category names (and optional descriptions)
+#   categorizations:  maps each SPDX license ID to one or more categories
 #
-# Full list of SPDX identifiers: https://spdx.org/licenses/
-# ORT reference: https://oss-review-toolkit.org/docs/configuration/license-classifications
+# The evaluator.rules.kts can reference categories by name.
+# Full reference: https://oss-review-toolkit.org/docs/configuration/license-classifications
 
 categories:
-  # ── Permissive ───────────────────────────────────────────────────────────────
-  # Minimal restrictions; generally safe for any distribution model.
   - name: "permissive"
-    licenses:
-      - "MIT"
-      - "Apache-2.0"
-      - "BSD-2-Clause"
-      - "BSD-3-Clause"
-      - "ISC"
-      - "0BSD"
-      - "Unlicense"
-      - "CC0-1.0"
-      - "WTFPL"
-      - "Zlib"
-      - "PSF-2.0"
-      - "Python-2.0"
-
-  # ── Weak copyleft ────────────────────────────────────────────────────────────
-  # Requires disclosure of modifications to the library itself, but not the
-  # containing application. Usually safe for linking.
   - name: "copyleft"
-    licenses:
-      - "LGPL-2.0-only"
-      - "LGPL-2.0-or-later"
-      - "LGPL-2.1-only"
-      - "LGPL-2.1-or-later"
-      - "LGPL-3.0-only"
-      - "LGPL-3.0-or-later"
-      - "MPL-2.0"
-      - "EPL-1.0"
-      - "EPL-2.0"
-      - "CDDL-1.0"
-      - "EUPL-1.2"
-
-  # ── Strong copyleft ──────────────────────────────────────────────────────────
-  # Requires disclosure of the entire combined work's source if distributed.
-  # Use the evaluator rule to block or warn on these.
   - name: "strong-copyleft"
-    licenses:
-      - "GPL-2.0-only"
-      - "GPL-2.0-or-later"
-      - "GPL-3.0-only"
-      - "GPL-3.0-or-later"
-      - "AGPL-1.0-only"
-      - "AGPL-1.0-or-later"
-      - "AGPL-3.0-only"
-      - "AGPL-3.0-or-later"
-      - "SSPL-1.0"
-
-  # ── Proprietary / Commercial ─────────────────────────────────────────────────
-  # Not open source; requires a commercial licence or explicit permission.
   - name: "commercial"
-    licenses:
-      - "LicenseRef-scancode-commercial-license"
-      - "LicenseRef-scancode-proprietary-license"
-
-  # ── Free but restricted ──────────────────────────────────────────────────────
-  # Open source but with additional use restrictions (non-commercial clauses, etc.).
   - name: "free-restricted"
-    licenses:
-      - "CC-BY-NC-4.0"
-      - "CC-BY-NC-SA-4.0"
-      - "BUSL-1.1"
+
+categorizations:
+  # ── Permissive ───────────────────────────────────────────────────────────────
+  - id: "MIT"
+    categories: ["permissive"]
+  - id: "Apache-2.0"
+    categories: ["permissive"]
+  - id: "BSD-2-Clause"
+    categories: ["permissive"]
+  - id: "BSD-3-Clause"
+    categories: ["permissive"]
+  - id: "ISC"
+    categories: ["permissive"]
+  - id: "0BSD"
+    categories: ["permissive"]
+  - id: "Unlicense"
+    categories: ["permissive"]
+  - id: "CC0-1.0"
+    categories: ["permissive"]
+  - id: "Zlib"
+    categories: ["permissive"]
+  - id: "PSF-2.0"
+    categories: ["permissive"]
+
+  # ── Weak copyleft ─────────────────────────────────────────────────────────────
+  - id: "LGPL-2.0-only"
+    categories: ["copyleft"]
+  - id: "LGPL-2.0-or-later"
+    categories: ["copyleft"]
+  - id: "LGPL-2.1-only"
+    categories: ["copyleft"]
+  - id: "LGPL-2.1-or-later"
+    categories: ["copyleft"]
+  - id: "LGPL-3.0-only"
+    categories: ["copyleft"]
+  - id: "LGPL-3.0-or-later"
+    categories: ["copyleft"]
+  - id: "MPL-2.0"
+    categories: ["copyleft"]
+  - id: "EPL-1.0"
+    categories: ["copyleft"]
+  - id: "EPL-2.0"
+    categories: ["copyleft"]
+  - id: "EUPL-1.2"
+    categories: ["copyleft"]
+
+  # ── Strong copyleft ───────────────────────────────────────────────────────────
+  - id: "GPL-2.0-only"
+    categories: ["strong-copyleft"]
+  - id: "GPL-2.0-or-later"
+    categories: ["strong-copyleft"]
+  - id: "GPL-3.0-only"
+    categories: ["strong-copyleft"]
+  - id: "GPL-3.0-or-later"
+    categories: ["strong-copyleft"]
+  - id: "AGPL-3.0-only"
+    categories: ["strong-copyleft"]
+  - id: "AGPL-3.0-or-later"
+    categories: ["strong-copyleft"]
+  - id: "SSPL-1.0"
+    categories: ["strong-copyleft"]
+
+  # ── Free but restricted ───────────────────────────────────────────────────────
+  - id: "BUSL-1.1"
+    categories: ["free-restricted"]
